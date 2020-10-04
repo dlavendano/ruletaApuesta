@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\source\\repos\\APIRuleta\\APIRuleta\\APIRuleta.csproj": {}
+    "C:\\Users\\Usuario\\source\\repos\\APIRuleta\\repositorio\\ruletaApuesta\\APIRuleta.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\source\\repos\\APIRuleta\\APIRuleta\\APIRuleta.csproj": {
+    "C:\\Users\\Usuario\\source\\repos\\APIRuleta\\repositorio\\ruletaApuesta\\APIRuleta.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\source\\repos\\APIRuleta\\APIRuleta\\APIRuleta.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\source\\repos\\APIRuleta\\repositorio\\ruletaApuesta\\APIRuleta.csproj",
         "projectName": "APIRuleta",
-        "projectPath": "C:\\Users\\Usuario\\source\\repos\\APIRuleta\\APIRuleta\\APIRuleta.csproj",
+        "projectPath": "C:\\Users\\Usuario\\source\\repos\\APIRuleta\\repositorio\\ruletaApuesta\\APIRuleta.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\source\\repos\\APIRuleta\\APIRuleta\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\source\\repos\\APIRuleta\\repositorio\\ruletaApuesta\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
