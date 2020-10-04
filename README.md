@@ -1,2 +1,4 @@
-# ruletaApuesta
-prueba clean code vacante backend
+# RuletaApuesta
+Prueba clean code vacante backend
+
+
