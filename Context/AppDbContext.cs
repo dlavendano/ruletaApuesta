@@ -14,5 +14,6 @@ namespace APIRuleta.Context
         {
         }
         public DbSet<ruleta> ruleta { get; set; }
+        public DbSet<apuesta> apuesta { get; set; }
     }
 }

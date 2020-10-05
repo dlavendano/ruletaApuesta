@@ -43,8 +43,6 @@ namespace APIRuleta.Controllers
         }
 
         // PUT: api/ruletas/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> Putruleta(int id, ruleta ruleta)
         {
@@ -75,8 +73,6 @@ namespace APIRuleta.Controllers
         }
 
         // POST: api/ruletas
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<ruleta>> Postruleta(ruleta ruleta)
         {
