@@ -14,6 +14,7 @@ namespace APIRuleta.Entities
         [ForeignKey("ruleta")]
         public int id_ruleta { get; set; }
         public int monto_apostado { get; set; }
+        public int numero_apostado { get; set; }
         public int? resultado { get; set; }
         public int? monto_ganado { get; set; }
     }

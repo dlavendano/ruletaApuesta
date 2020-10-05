@@ -23,7 +23,7 @@ namespace APIRuleta.Controllers
 
         // GET: api/apuestas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<apuesta>>> Getapuesta_1()
+        public async Task<ActionResult<IEnumerable<apuesta>>> Getapuesta()
         {
             return await _context.apuesta.ToListAsync();
         }
@@ -53,6 +53,9 @@ namespace APIRuleta.Controllers
                 return BadRequest();
             }
 
+     
+            
+
             _context.Entry(apuesta).State = EntityState.Modified;
 
             try
@@ -80,6 +83,24 @@ namespace APIRuleta.Controllers
         [HttpPost]
         public async Task<ActionResult<apuesta>> Postapuesta(apuesta apuesta)
         {
+            var ruleta = await _context.ruleta.FindAsync(apuesta.id_ruleta);
+
+            if (ruleta == null)
+            {
+                return NotFound();
+            }
+            if (ruleta.estado==false)
+            {
+                return BadRequest();
+            }
+            if (apuesta.monto_apostado>10000 || apuesta.monto_apostado<=0)
+            {
+                return BadRequest();
+            }
+            if (apuesta.numero_apostado<0 || apuesta.numero_apostado > 36)
+            {
+                return BadRequest();
+            }
             _context.apuesta.Add(apuesta);
             await _context.SaveChangesAsync();
 

@@ -39,6 +39,7 @@ namespace APIRuleta.Controllers
                 return NotFound();
             }
 
+
             return ruleta;
         }
 
