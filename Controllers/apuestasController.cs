@@ -52,12 +52,7 @@ namespace APIRuleta.Controllers
             {
                 return BadRequest();
             }
-
-     
-            
-
             _context.Entry(apuesta).State = EntityState.Modified;
-
             try
             {
                 await _context.SaveChangesAsync();
