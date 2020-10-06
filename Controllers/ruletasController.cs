@@ -165,25 +165,29 @@ namespace APIRuleta.Controllers
             var apuestas = _context.apuesta.Where(x => x.id_ruleta == id).ToList();
             foreach (var element in apuestas)
             {
-                if (element.numero_apostado == winnerNumber)
+                if (element.tipo_apuesta == false)
                 {
-                    element.monto_ganado = element.monto_apostado * 5;
-                    element.resultado = true;
-                    _context.SaveChanges();
-                    _context.Entry(element).State = EntityState.Modified;
-
-                    
+                    if (element.numero_apostado == winnerNumber)
+                    {
+                        element.monto_ganado = element.monto_apostado * 5;
+                        element.resultado = true;
+                        _context.SaveChanges();
+                        _context.Entry(element).State = EntityState.Modified;
+                    }
                 }
-                else
-                {
+                else {
+                    if (element.numero_apostado % 2 == winnerNumber % 2)
+                    {
+                        element.monto_ganado = element.monto_apostado * 1.8;
+                        element.resultado = true;
+                        _context.SaveChanges();
+                        _context.Entry(element).State = EntityState.Modified;
+                    }
+                }
                     element.monto_ganado = 0;
                     element.resultado = false;
                     _context.SaveChanges();
                     _context.Entry(element).State = EntityState.Modified;
-
-                   
-                }
-                
             }
         }
 
