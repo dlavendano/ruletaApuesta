@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using APIRuleta.Context;
 using APIRuleta.Entities;
 using System.Security.Cryptography;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace APIRuleta.Controllers
 {
@@ -152,7 +153,38 @@ namespace APIRuleta.Controllers
                 }
             }
 
+            calcularApuestas(ruleta.id, winnerNumber);
+
+
             return NoContent();
+        }
+
+        //Actualiza resultados
+        public async void calcularApuestas(int id, int winnerNumber)
+        {
+            var apuestas = _context.apuesta.Where(x => x.id_ruleta == id).ToList();
+            foreach (var element in apuestas)
+            {
+                if (element.numero_apostado == winnerNumber)
+                {
+                    element.monto_ganado = element.monto_apostado * 5;
+                    element.resultado = true;
+                    _context.SaveChanges();
+                    _context.Entry(element).State = EntityState.Modified;
+
+                    
+                }
+                else
+                {
+                    element.monto_ganado = 0;
+                    element.resultado = false;
+                    _context.SaveChanges();
+                    _context.Entry(element).State = EntityState.Modified;
+
+                   
+                }
+                
+            }
         }
 
         // POST: api/ruletas
