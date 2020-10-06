@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using APIRuleta.Context;
 using APIRuleta.Entities;
+using System.Security.Cryptography;
 
 namespace APIRuleta.Controllers
 {
@@ -51,6 +52,87 @@ namespace APIRuleta.Controllers
             {
                 return BadRequest();
             }
+
+            _context.Entry(ruleta).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ruletaExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // PUT: api/ruletas/open/5
+        [HttpPut("open/{id}")]
+        public async Task<IActionResult> OpenRuleta(int id)
+        {
+            var ruleta = await _context.ruleta.FindAsync(id);
+
+            if (id != ruleta.id)
+            {
+                return BadRequest();
+            }
+
+            ruleta.estado = true;
+
+            _context.SaveChanges();
+
+            _context.Entry(ruleta).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ruletaExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+        // PUT: api/ruletas/close/5
+        [HttpPut("close/{id}")]
+        public async Task<IActionResult> CloseRuleta(int id)
+        {
+            Random random = new System.Random();
+            int winnerNumber = random.Next(36);
+            DateTime localDate = DateTime.Now;
+            var ruleta = await _context.ruleta.FindAsync(id);
+
+            if (id != ruleta.id)
+            {
+                return BadRequest();
+            }
+
+            if (ruleta.estado == false)
+            {
+                return BadRequest();
+            }
+            ruleta.estado = false;
+            ruleta.numero = winnerNumber;
+            ruleta.fecha_juego = localDate;
+
+            _context.SaveChanges();
 
             _context.Entry(ruleta).State = EntityState.Modified;
 
